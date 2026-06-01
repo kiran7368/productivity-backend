@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from config import Config
 from utils.db import db
 from utils.auth import jwt
@@ -16,7 +16,7 @@ app.register_blueprint(note_bp)
 
 @app.route('/')
 def home():
-    return "Backend Running 🚀"
+    return render_template("index.html")
 
 if __name__ == '__main__':
     with app.app_context():
