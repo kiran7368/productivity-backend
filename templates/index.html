@@ -1,106 +1,268 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
-    <title>Kiran Babu | Backend Developer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body{
-            background:#0f172a;
-            color:white;
-            font-family:Arial,sans-serif;
-            text-align:center;
-            padding:60px;
-        }
+<title>Kiran Babu | Backend Developer</title>
 
-        h1{
-            font-size:50px;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-        h2{
-            color:#38bdf8;
-        }
+<style>
 
-        .card{
-            max-width:800px;
-            margin:auto;
-            background:#1e293b;
-            padding:30px;
-            border-radius:20px;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
-        a{
-            color:#38bdf8;
-            text-decoration:none;
-            font-weight:bold;
-        }
+body{
+background:#020617;
+color:white;
+overflow-x:hidden;
+}
 
-        ul{
-            list-style:none;
-            padding:0;
-        }
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+position:relative;
+}
 
-        li{
-            margin:10px;
-        }
+.hero::before{
+content:'';
+position:absolute;
+width:400px;
+height:400px;
+background:#0ea5e9;
+filter:blur(180px);
+opacity:.25;
+border-radius:50%;
+animation:float 6s ease-in-out infinite;
+}
 
-        .btn{
-            display:inline-block;
-            margin:10px;
-            padding:12px 20px;
-            background:#38bdf8;
-            color:black;
-            border-radius:10px;
-        }
-    </style>
+@keyframes float{
+0%,100%{
+transform:translateY(0px);
+}
+50%{
+transform:translateY(-40px);
+}
+}
+
+.content{
+position:relative;
+z-index:10;
+}
+
+h1{
+font-size:4rem;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.highlight{
+color:#38bdf8;
+}
+
+.typing{
+font-size:1.5rem;
+color:#94a3b8;
+height:40px;
+margin-bottom:25px;
+}
+
+.desc{
+max-width:700px;
+margin:auto;
+line-height:1.8;
+color:#cbd5e1;
+font-size:1.05rem;
+}
+
+.buttons{
+margin-top:35px;
+}
+
+.btn{
+display:inline-block;
+padding:14px 28px;
+margin:10px;
+border-radius:10px;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+}
+
+.primary{
+background:#38bdf8;
+color:black;
+}
+
+.primary:hover{
+transform:translateY(-5px);
+}
+
+.secondary{
+border:2px solid #38bdf8;
+color:#38bdf8;
+}
+
+.secondary:hover{
+background:#38bdf8;
+color:black;
+}
+
+.stats{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:50px;
+flex-wrap:wrap;
+}
+
+.stat{
+background:#0f172a;
+padding:20px;
+width:180px;
+border-radius:15px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.stat h2{
+color:#38bdf8;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<div class="card">
+<section class="hero">
 
-<h1>Kiran Babu</h1>
+<div class="content">
 
-<h2>Backend Developer</h2>
+<h1>
+Hi, I'm
+<span class="highlight">Kiran Babu</span>
+</h1>
 
-<p>
-Production-ready backend systems using
-Python, Flask, PostgreSQL, JWT Authentication and REST APIs.
+<div class="typing" id="typing"></div>
+
+<p class="desc">
+Backend Developer focused on building production-ready applications using Python, Flask, PostgreSQL, REST APIs, JWT Authentication, and Cloud Deployment.
 </p>
 
-<h3>Tech Stack</h3>
+<div class="buttons">
 
-<ul>
-<li> Python</li>
-<li> Flask</li>
-<li> PostgreSQL</li>
-<li> JWT Authentication</li>
-<li> REST APIs</li>
-<li> Render Deployment</li>
-</ul>
-
-<h3>Projects</h3>
-
-<p>
-SaaS Productivity Backend System
-</p>
-
-<a class="btn"
-href="https://github.com/kiran7368/productivity-backend">
+<a href="https://github.com/kiran7368" class="btn primary">
 GitHub
 </a>
 
-<a class="btn"
-href="https://productivity-backend-jfgz.onrender.com">
-Live Backend
+<a href="https://linkedin.com/in/kiran-babu-575687292" class="btn secondary">
+LinkedIn
 </a>
 
-<br><br>
+</div>
 
-<p>
-EMAIL:kirababukaligithi7148@gmail.com
-</p>
+<div class="stats">
+
+<div class="stat">
+<h2>2+</h2>
+<p>Projects</p>
+</div>
+
+<div class="stat">
+<h2>REST</h2>
+<p>API Systems</p>
+</div>
+
+<div class="stat">
+<h2>JWT</h2>
+<p>Authentication</p>
+</div>
+
+<div class="stat">
+<h2>Cloud</h2>
+<p>Deployment</p>
+</div>
 
 </div>
+
+</div>
+
+</section>
+
+<script>
+
+const roles = [
+"Backend Developer",
+"Python Developer",
+"Flask API Developer",
+"PostgreSQL Developer"
+];
+
+let roleIndex = 0;
+let charIndex = 0;
+
+const typing = document.getElementById("typing");
+
+function type(){
+
+if(charIndex < roles[roleIndex].length){
+
+typing.innerHTML += roles[roleIndex].charAt(charIndex);
+
+charIndex++;
+
+setTimeout(type,100);
+
+}else{
+
+setTimeout(erase,1500);
+
+}
+
+}
+
+function erase(){
+
+if(charIndex > 0){
+
+typing.innerHTML =
+roles[roleIndex].substring(0,charIndex-1);
+
+charIndex--;
+
+setTimeout(erase,50);
+
+}else{
+
+roleIndex++;
+
+if(roleIndex >= roles.length){
+
+roleIndex = 0;
+
+}
+
+setTimeout(type,300);
+
+}
+
+}
+
+type();
+
+
+</script>
 
 </body>
 </html>
